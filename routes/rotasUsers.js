@@ -1,24 +1,26 @@
 import express from 'express';
 import cors from 'cors';
-import { getAllUsuarios, getUsuariosF, createUsuario, updateUsuario, deleteUsuario, loginUsuario } from '../controllers/userControler.js';
+import { 
+    getAllUsuarios, 
+    getUsuariosF, 
+    createUsuario, 
+    updateUsuario, 
+    deleteUsuario, 
+    loginUsuario 
+} from '../controllers/userControler.js';
 
-const app = express();
+const router = express.Router();
 
 // Middleware
-app.use(express.json());
-app.use(cors());
+router.use(express.json());
+router.use(cors());
 
 // Rotas
-app.get('/usuarios', getAllUsuarios);
-app.get('/usuarios/:id', getUsuariosF);
-app.post('/usuarios', createUsuario);
-app.put('/usuarios/:id', updateUsuario);
-app.delete('/usuarios/:id', deleteUsuario);
-app.post('/login', loginUsuario); // Rota de login adicionada
+router.get('/usuarios', getAllUsuarios);
+router.get('/usuarios/:id', getUsuariosF);
+router.post('/usuarios', createUsuario);
+router.put('/usuarios/:id', updateUsuario);
+router.delete('/usuarios/:id', deleteUsuario);
+router.post('/login', loginUsuario); // Rota de login
 
-// Inicia o servidor
-app.listen(3000, () => {
-    console.log('Servidor rodando com sucesso na porta 3000');
-});
-
-export default app;
+export default router;
